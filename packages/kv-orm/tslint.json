@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-eslint-rules-recommended",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "no-unused-variable": false,
+    "variable-name": [true, "ban-keywords", "check-format","allow-leading-underscore"]
+  }
+}
