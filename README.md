@@ -3,6 +3,8 @@
 
 **Warning! This package is still in active development, and breaking changes are possible and in fact, likely.**
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/af22a9514da95ae6ff6c/maintainability)](https://codeclimate.com/github/GregBrimble/kv-orm/maintainability)
+
 ## Getting Started
 See [Getting Started](packages/kv-orm/README.md).
 
