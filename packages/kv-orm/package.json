@@ -1,6 +1,6 @@
 {
   "name": "kv-orm",
-  "version": "0.1.0",
+  "version": "0.0.9",
   "description": "A Node.JS ORM for key-value datastores",
   "main": "dist/index.js",
   "types": "dist/index.d.t.s",
