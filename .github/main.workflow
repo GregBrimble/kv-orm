@@ -2,7 +2,8 @@ workflow "Install and Test" {
   on = "push"
   resolves = [
     "Test",
-    "Lint"
+    "Lint",
+    "Build",
   ]
 }
 
@@ -27,4 +28,10 @@ action "Lint" {
   uses = "actions/npm@master"
   runs = "npx lerna exec npm run lint"
   needs = ["Bootstrap"]
+}
+
+action "Build" {
+  uses = "actions/npm@master"
+  needs = ["Bootstrap"]
+  runs = "npx lerna exec npm run build"
 }
