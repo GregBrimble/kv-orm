@@ -24,6 +24,10 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
     };
 
     return constructor;
+
+
+
+    console.log('Intentional bad-ness');
   };
 }
 
