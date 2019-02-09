@@ -1,7 +1,18 @@
 {
   "name": "kv-orm-monorepo",
   "private": true,
+  "scripts": {
+    "commit": "git-cz",
+    "test": "jest --projects packages/* --coverage"
+  },
   "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "jest": "^24.1.0",
     "lerna": "^3.10.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
