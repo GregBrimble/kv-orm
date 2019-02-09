@@ -1,6 +1,6 @@
 {
   "name": "kv-orm-memory",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An in-memory datastore for kv-orm",
   "main": "dist/index",
   "types": "dist/index",
@@ -41,7 +41,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "@types/jest": "^24.0.0",
     "jest": "^24.1.0",
-    "kv-orm": "^0.2.1",
+    "kv-orm": "^0.2.2",
     "prettier": "^1.16.0",
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.1",
