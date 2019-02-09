@@ -5,14 +5,15 @@
 
 *Tooling & Infrastructure*
 
-[![lerna badge](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) 
-[![Greenkeeper badge](https://badges.greenkeeper.io/GregBrimble/kv-orm.svg)](https://greenkeeper.io/)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) 
+[![Greenkeeper](https://badges.greenkeeper.io/GregBrimble/kv-orm.svg)](https://greenkeeper.io/)
+[![Commitizen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 *Source Code*
 
-[![Maintainability badge](https://api.codeclimate.com/v1/badges/af22a9514da95ae6ff6c/maintainability)](https://codeclimate.com/github/GregBrimble/kv-orm/maintainability)
-[![License badge](https://img.shields.io/github/license/gregbrimble/kv-orm.svg)](./LICENSE)
+[![Maintainability](https://api.codeclimate.com/v1/badges/af22a9514da95ae6ff6c/maintainability)](https://codeclimate.com/github/GregBrimble/kv-orm/maintainability)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/gregbrimble/kv-orm/master.svg)](https://codecov.io/gh/gregbrimble/kv-orm/)
+[![License](https://img.shields.io/github/license/gregbrimble/kv-orm.svg)](./LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/gregbrimble/kv-orm.svg?logo=github)](https://github.com/GregBrimble/kv-orm)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/gregbrimble/kv-orm.svg?logo=github)](https://github.com/GregBrimble/kv-orm)
 [![GitHub repo size](https://img.shields.io/github/repo-size/gregbrimble/kv-orm.svg?logo=github)](https://github.com/GregBrimble/kv-orm)
