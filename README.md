@@ -7,6 +7,7 @@
 
 [![lerna badge](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) 
 [![Greenkeeper badge](https://badges.greenkeeper.io/GregBrimble/kv-orm.svg)](https://greenkeeper.io/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 *Source Code*
 
