@@ -52,5 +52,6 @@
   },
   "peerDependencies": {
     "kv-orm": "^0.1.0"
-  }
+  },
+  "gitHead": "7e1fa77ce85e81542db4ba2c968cea0af36286b6"
 }
