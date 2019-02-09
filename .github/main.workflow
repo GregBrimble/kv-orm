@@ -18,12 +18,6 @@ action "Bootstrap" {
   needs = ["Install"]
 }
 
-action "Test" {
-  uses = "actions/npm@master"
-  runs = "npx lerna exec npm test"
-  needs = ["Bootstrap"]
-}
-
 action "Lint" {
   uses = "actions/npm@master"
   runs = "npx lerna exec npm run lint"
@@ -32,6 +26,12 @@ action "Lint" {
 
 action "Build" {
   uses = "actions/npm@master"
-  needs = ["Bootstrap"]
   runs = "npx lerna exec npm run build"
+  needs = ["Lint"]
+}
+
+action "Test" {
+  uses = "actions/npm@master"
+  runs = "npx lerna exec npm test"
+  needs = ["Build"]
 }
