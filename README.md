@@ -74,7 +74,8 @@
 If there is any other datastore that you'd like to see supported, please [create an issue](https://github.com/GregBrimble/kv-orm/issues/new), or make a pull request.
 
 ## Roadmap
-See [the issues on GitHub](https://github.com/GregBrimble/kv-orm/issues).
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/GregBrimble/kv-orm.svg?columns=all)](https://waffle.io/GregBrimble/kv-orm)
+
 
 [kv-orm]: https://github.com/GregBrimble/kv-orm
 [kv-orm-core]: packages/kv-orm/README.md
