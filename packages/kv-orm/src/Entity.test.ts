@@ -18,10 +18,10 @@ describe('Entity', () => {
 
 describe('BaseEntity', () => {
   describe('injects the static functions', () => {
-    it('and find returns and instance of the Entity, with a matching UUID', async () => {
+    it('and get returns and instance of the Entity, with a matching UUID', async () => {
       expect.assertions(2);
       const someUUID = uuid();
-      const foundAuthor = (await Author.find(someUUID)) as Author;
+      const foundAuthor = (await Author.get(someUUID)) as Author;
       expect(foundAuthor).toBeInstanceOf(Author);
       expect(foundAuthor.uuid).toEqual(someUUID);
     });

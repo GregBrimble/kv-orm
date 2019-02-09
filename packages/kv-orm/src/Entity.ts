@@ -16,7 +16,7 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
     Object.assign(constructor, original);
 
     // TODO: Not a fan of this, and the hacky duplication done in BaseEntity
-    constructor.find = function(this: typeof BaseEntity, uuid: string): Promise<T> {
+    constructor.get = function(this: typeof BaseEntity, uuid: string): Promise<T> {
       // TODO: Clear all default values of an Entity so as to not ignore overriding values saved in the database (more truthful than just an Entity default)
       const instance = new (this as any)();
       instance.uuid = uuid;
@@ -29,7 +29,7 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
 
 export abstract class BaseEntity {
   // @ts-ignore
-  public static abstract find<T extends BaseEntity>(this: typeof BaseEntity, id: string): Promise<T>;
+  public static get<T extends BaseEntity>(this: typeof BaseEntity, id: string): Promise<T>;
 
   @UUIDColumn()
   public uuid!: string;

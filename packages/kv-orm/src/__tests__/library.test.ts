@@ -19,7 +19,7 @@ describe('the library', () => {
     fictionalAuthor.temporarilyFlaggedInMemory = true;
 
     it('can find those authors by auto-generated UUID', async () => {
-      const foundAuthor = (await Author.find(ernestHemingway.uuid)) as Author;
+      const foundAuthor = (await Author.get(ernestHemingway.uuid)) as Author;
 
       expect(foundAuthor.uuid).toEqual(ernestHemingway.uuid);
       expect(foundAuthor.firstName).resolves.toEqual('Ernest');
@@ -27,7 +27,7 @@ describe('the library', () => {
     });
 
     it('can find those authors by manually specified UUID', async () => {
-      const foundAuthor = (await Author.find(williamShakespeare.uuid)) as Author;
+      const foundAuthor = (await Author.get(williamShakespeare.uuid)) as Author;
 
       expect(foundAuthor.uuid).toEqual('10ba038e-48da-487b-96e8-8d3b99b6d18a');
       expect(foundAuthor.firstName).resolves.toEqual('William');
@@ -35,7 +35,7 @@ describe('the library', () => {
     });
 
     it('persists Column values as expected in the datastore', async () => {
-      const foundAuthor = (await Author.find(fictionalAuthor.uuid)) as Author;
+      const foundAuthor = (await Author.get(fictionalAuthor.uuid)) as Author;
 
       expect(foundAuthor.uuid).toEqual(fictionalAuthor.uuid);
       expect(foundAuthor.firstName).resolves.toBeTruthy();
