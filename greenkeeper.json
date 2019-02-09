@@ -3,7 +3,9 @@
     "default": {
       "packages": [
         "package.json",
-        "packages/kv-orm/package.json"
+        "packages/kv-orm/package.json",
+        "packages/kv-orm-memory/package.json",
+        "packages/kv-orm-cf-workers/package.json"
       ]
     }
   }
