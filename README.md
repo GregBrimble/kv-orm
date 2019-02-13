@@ -1,7 +1,7 @@
 # kv-orm
 [kv-orm] is an [object-relational mapper](https://en.wikipedia.org/wiki/Object-relational_mapping) for [key-value datastores](https://en.wikipedia.org/wiki/Key-value_database).
 
-**Warning! This package is still in active development, and breaking changes are possible and in fact, likely.**
+**Warning! This package is still in active development.**
 
 *Tooling & Infrastructure*
 
@@ -72,11 +72,20 @@
 * In-memory with [kv-orm-memory]
 * [Cloudflare Workers KV](https://www.cloudflare.com/products/workers-kv/) with [kv-orm-cf-workers]
 
-If there is any other datastore that you'd like to see supported, please [create an issue](https://github.com/GregBrimble/kv-orm/issues/new), or make a pull request.
+If there is any other datastore that you'd like to see supported, please [create an issue](https://github.com/GregBrimble/kv-orm/issues/new), or [make a pull request](https://github.com/GregBrimble/kv-orm/fork).
 
 ## Roadmap
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/GregBrimble/kv-orm.svg?columns=all)](https://waffle.io/GregBrimble/kv-orm)
+[![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/bug.svg?colorB=%23d73a4a&logo=github)](https://github.com/GregBrimble/kv-orm/labels/bug)
+[![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/enhancement.svg?colorB=%23a2eeef&logo=github)](https://github.com/GregBrimble/kv-orm/labels/enhancement)
+[![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/far%20future.svg?colorB=%23c4c6ff&logo=github)](https://github.com/GregBrimble/kv-orm/labels/far%20future)
 
+### Packages
+* [kv-orm](https://github.com/GregBrimble/kv-orm/projects/2)
+* [kv-orm-memory](https://github.com/GregBrimble/kv-orm/projects/3)
+* [kv-orm-cf-workers](https://github.com/GregBrimble/kv-orm/projects/4)
+
+### Other
+* [Tooling & Infrastructure](https://github.com/GregBrimble/kv-orm/projects/1)
 
 [kv-orm]: https://github.com/GregBrimble/kv-orm
 [kv-orm-core]: packages/kv-orm/README.md
