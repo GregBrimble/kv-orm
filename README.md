@@ -12,7 +12,7 @@
 *Source Code*
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/af22a9514da95ae6ff6c/maintainability)](https://codeclimate.com/github/GregBrimble/kv-orm/maintainability)
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/gregbrimble/kv-orm/master.svg)](https://codecov.io/gh/gregbrimble/kv-orm/)
+[![codecov](https://codecov.io/gh/GregBrimble/kv-orm/branch/master/graph/badge.svg)](https://codecov.io/gh/GregBrimble/kv-orm)
 [![License](https://img.shields.io/github/license/gregbrimble/kv-orm.svg)](./LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/gregbrimble/kv-orm.svg?logo=github)](https://github.com/GregBrimble/kv-orm)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/gregbrimble/kv-orm.svg?logo=github)](https://github.com/GregBrimble/kv-orm)
