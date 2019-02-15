@@ -29,7 +29,7 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
 
 export abstract class BaseEntity {
   // @ts-ignore
-  public static get<T extends BaseEntity>(this: typeof BaseEntity, id: string): Promise<T>;
+  public static get<T extends BaseEntity>(this: typeof BaseEntity, uuid: string): Promise<T>;
 
   @UUIDColumn()
   public uuid!: string;
