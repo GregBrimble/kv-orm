@@ -40,7 +40,7 @@ describe('the library', () => {
       expect(foundAuthor.uuid).toEqual(fictionalAuthor.uuid);
       expect(foundAuthor.firstName).resolves.toBeTruthy();
       expect(foundAuthor.lastName).resolves.toBeTruthy();
-      // expect(foundAuthor.isPerson).resolves.toBeFalsy();           TODO: Fix (See Entity.ts)
+      expect(foundAuthor.isPerson).resolves.toBeFalsy();
       expect(foundAuthor.temporarilyFlaggedInMemory).toBeFalsy();
     });
   });
