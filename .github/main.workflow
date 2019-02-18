@@ -34,4 +34,5 @@ action "Test" {
   uses = "actions/npm@master"
   runs = "npm test"
   needs = ["Build"]
+  secrets = ["CODECOV_TOKEN"]
 }
