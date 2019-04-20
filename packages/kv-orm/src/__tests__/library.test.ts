@@ -21,26 +21,29 @@ describe('the library', () => {
     it('can find those authors by auto-generated UUID', async () => {
       const foundAuthor = (await Author.get(ernestHemingway.uuid)) as Author;
 
+      expect.assertions(3);
       expect(foundAuthor.uuid).toEqual(ernestHemingway.uuid);
-      expect(foundAuthor.firstName).resolves.toEqual('Ernest');
-      expect(foundAuthor.lastName).resolves.toEqual('Hemingway');
+      expect(await foundAuthor.firstName).toEqual('Ernest');
+      expect(await foundAuthor.lastName).toEqual('Hemingway');
     });
 
     it('can find those authors by manually specified UUID', async () => {
       const foundAuthor = (await Author.get(williamShakespeare.uuid)) as Author;
 
+      expect.assertions(3);
       expect(foundAuthor.uuid).toEqual('10ba038e-48da-487b-96e8-8d3b99b6d18a');
-      expect(foundAuthor.firstName).resolves.toEqual('William');
-      expect(foundAuthor.lastName).resolves.toEqual('Shakespeare');
+      expect(await foundAuthor.firstName).toEqual('William');
+      expect(await foundAuthor.lastName).toEqual('Shakespeare');
     });
 
     it('persists Column values as expected in the datastore', async () => {
       const foundAuthor = (await Author.get(fictionalAuthor.uuid)) as Author;
 
+      expect.assertions(5);
       expect(foundAuthor.uuid).toEqual(fictionalAuthor.uuid);
-      expect(foundAuthor.firstName).resolves.toBeTruthy();
-      expect(foundAuthor.lastName).resolves.toBeTruthy();
-      expect(foundAuthor.isPerson).resolves.toBeFalsy();
+      expect(await foundAuthor.firstName).toBeTruthy();
+      expect(await foundAuthor.lastName).toBeTruthy();
+      expect(await foundAuthor.isPerson).toBeFalsy();
       expect(foundAuthor.temporarilyFlaggedInMemory).toBeFalsy();
     });
   });

@@ -17,5 +17,13 @@ export function hexToArrayBuffer(hexString: string): ArrayBuffer {
 }
 
 export function arrayBufferToHex(arrayBuffer: ArrayBuffer): string {
-  return '';
+  const array = new Uint8Array(arrayBuffer);
+  let result = '';
+
+  for (const i of array) {
+    const value = i.toString(16)
+    result += (value.length === 1 ? '0' + value : value)
+  }
+
+  return result;
 }

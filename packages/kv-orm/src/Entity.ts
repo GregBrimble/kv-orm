@@ -6,7 +6,6 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
     const original = target;
 
     const constructor: any = function(this: any, ...args: any[]): void {
-      // TODO: Save default values of an Entity to the database immediately upon creation (values are immediately in memory, but unless changed, don't get saved)
       this.constructor.datastore = datastore;
       this.constructor.key = this.constructor.name;
       original.apply(this, args);
@@ -17,9 +16,10 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
 
     // TODO: Not a fan of this, and the hacky duplication done in BaseEntity
     constructor.get = function(this: typeof BaseEntity, uuid: string): Promise<T> {
-      // TODO: Clear all default values of an Entity so as to not ignore overriding values saved in the database (more truthful than just an Entity default)
-      const instance = new (this as any)();
+      const instance = Object.create(this.prototype)
+
       instance.uuid = uuid;
+
       return Promise.resolve(instance);
     };
 
