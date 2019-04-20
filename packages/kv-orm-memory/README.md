@@ -8,7 +8,7 @@ Please note, however, this datastore was not designed with security in mind. It 
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/kv-orm-memory.svg?logo=npm)](https://www.npmjs.com/package/kv-orm-memory)
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/kv-orm-memory.svg?logo=npm)](https://www.npmjs.com/package/kv-orm-memory)
 [![License](https://img.shields.io/npm/l/kv-orm-memory.svg)](./LICENSE)
-[![types badge](https://img.shields.io/npm/types/kv-orm-memory.svg)](https://www.typescriptlang.org/)
+[![types](https://img.shields.io/npm/types/kv-orm-memory.svg)](https://www.typescriptlang.org/)
 
 ## Installation
 `npm install --save kv-orm kv-orm-memory`
@@ -30,7 +30,7 @@ class Author extends BaseEntity {
   public lastName!: string;
 }
 
-// For more information how to then use Author, check out the kv-orm package
+// For more information how to then use Author, check out the kv-orm package:
 // https://github.com/GregBrimble/kv-orm
 ```
 

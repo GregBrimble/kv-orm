@@ -6,7 +6,7 @@ This is the core [kv-orm] package.
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/kv-orm.svg?logo=npm)](https://www.npmjs.com/package/kv-orm)
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/kv-orm.svg?logo=npm)](https://www.npmjs.com/package/kv-orm)
 [![License](https://img.shields.io/npm/l/kv-orm.svg)](./LICENSE)
-[![types badge](https://img.shields.io/npm/types/kv-orm.svg)](https://www.typescriptlang.org/)
+[![types](https://img.shields.io/npm/types/kv-orm.svg)](https://www.typescriptlang.org/)
 
 ## Installation
 `npm install --save kv-orm`
@@ -26,7 +26,7 @@ Coming soon!
 ## Datastores
 In order to use [kv-orm], you will need a datastore. [Several plugin packages exist](../../README.md#Supported-Datastores), but it's easy to create your own, if needed.
 
-You must implement the `read`, `write`, and `delete` methods, as well as pass a `keySeparator` to `Datastore`.
+You must implement the `read`, `write`, and `delete` methods, as well as initialize the parent `Datastore` with a `keySeparator` in the `super` call.
 
 The following example is the code of [kv-orm-memory]:
 
@@ -54,7 +54,7 @@ export class MemoryDatastore extends Datastore {
 }
 ```
 
-Please consider creating a pull request to add your custom datastore to this repository, if you think it could be of use to others! 
+Please consider creating a pull request to add another datastore to this repository, if you think it could be of use to others! 
 
 [kv-orm]: https://github.com/GregBrimble/kv-orm
 [kv-orm-memory]: ../kv-orm-memory/README.md
