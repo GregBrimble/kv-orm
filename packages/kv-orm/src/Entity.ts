@@ -9,6 +9,11 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
       this.constructor.datastore = datastore;
       this.constructor.key = this.constructor.name;
       original.apply(this, args);
+      for (const key of this.constructor.relationships || []) {
+        // Object.defineProperty(this, key, {
+        //
+        // })
+      }
     };
 
     constructor.prototype = original.prototype;
@@ -16,7 +21,7 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
 
     // TODO: Not a fan of this, and the hacky duplication done in BaseEntity
     constructor.get = function(this: typeof BaseEntity, uuid: string): Promise<T> {
-      const instance = Object.create(this.prototype)
+      const instance = Object.create(this.prototype);
 
       instance.uuid = uuid;
 
