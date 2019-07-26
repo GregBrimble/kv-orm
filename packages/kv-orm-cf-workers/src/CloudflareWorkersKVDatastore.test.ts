@@ -25,21 +25,21 @@ describe('CloudflareWorkersKVDatastore', () => {
   it('can be initialized', () => {
     expect(cfWorkersKVDatastore).toBeInstanceOf(CloudflareWorkersKVDatastore);
   });
-  it('can be written to and read from', () => {
+  it('can be written to and read from', async () => {
     cfWorkersKVDatastore.write('key', 'value');
     expect.assertions(1);
-    expect(cfWorkersKVDatastore.read('key')).resolves.toEqual('value');
+    expect(await cfWorkersKVDatastore.read('key')).toEqual('value');
   });
-  it("doesn't error when reading nonexistent keys", () => {
+  it("doesn't error when reading nonexistent keys", async () => {
     expect.assertions(1);
-    expect(cfWorkersKVDatastore.read('non-existent key')).resolves.toBeNull();
+    expect(await cfWorkersKVDatastore.read('non-existent key')).toBeNull();
   });
-  it('can delete stored keys', () => {
+  it('can delete stored keys', async () => {
     cfWorkersKVDatastore.write('temporaryKey', 'temporaryValue');
     expect.assertions(2);
-    expect(cfWorkersKVDatastore.read('temporaryKey')).resolves.toEqual('temporaryValue');
+    expect(await cfWorkersKVDatastore.read('temporaryKey')).toEqual('temporaryValue');
     cfWorkersKVDatastore.delete('temporaryKey');
-    expect(cfWorkersKVDatastore.read('temporaryKey')).resolves.toBeNull();
+    expect(await cfWorkersKVDatastore.read('temporaryKey')).toBeNull();
   });
   describe('using entities', () => {
 
@@ -54,18 +54,18 @@ describe('CloudflareWorkersKVDatastore', () => {
     const author = new Author();
     const book = new Book();
 
-    it('can be accessed', () => {
+    it('can be accessed', async () => {
       const datastore = (author.constructor as any).datastore as Datastore;
       datastore.write('authorKey', 'authorValue');
       expect.assertions(1);
-      expect(datastore.read('authorKey')).resolves.toEqual('authorValue');
+      expect(await datastore.read('authorKey')).toEqual('authorValue');
     });
-    it('persists data between entities', () => {
+    it('persists data between entities', async () => {
       const authorDatastore = (author.constructor as any).datastore as Datastore;
       const bookDatastore = (book.constructor as any).datastore as Datastore;
       authorDatastore.write('sharedKey', 'sharedValue');
       expect.assertions(1);
-      expect(bookDatastore.read('sharedKey')).resolves.toEqual('sharedValue');
+      expect(await bookDatastore.read('sharedKey')).toEqual('sharedValue');
     });
   });
 });
