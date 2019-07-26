@@ -5,8 +5,9 @@ import { uuid } from './utils';
 const author = new Author();
 
 describe('Entity', () => {
-  it('retains a Class\'s properties', () => {
-    return expect(author.isPerson).resolves.toBeTruthy();
+  it('retains a Class\'s properties', async () => {
+    expect.assertions(1);
+    expect(await author.isPerson).toBeTruthy();
   });
   it('retains a Class\'s static members', () => {
     expect(Author.generatePenName()).toBeTruthy();
@@ -25,6 +26,7 @@ describe('Entity', () => {
 
       const foundAuthor = (await Author.get(author.uuid)) as Author;
 
+
       expect.assertions(2);
       expect(await ((author.constructor as any).datastore as Datastore).read(`Author:${author.uuid}:isPerson`)).toBeFalsy();
       expect(await foundAuthor.isPerson).toBeFalsy();
@@ -36,7 +38,7 @@ describe('BaseEntity', () => {
   describe('injects the static functions', () => {
     it('and get returns and instance of the Entity, with a matching UUID', async () => {
       const someUUID = uuid();
-      const foundAuthor = (await Author.get(someUUID)) as Author;
+      const foundAuthor = (await Author.get(someUUID));
 
       expect.assertions(2);
       expect(foundAuthor).toBeInstanceOf(Author);
