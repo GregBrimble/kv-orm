@@ -1,6 +1,8 @@
 import { Column } from '../../..';
 import { BaseEntity, Entity } from '../../../Entity';
+import { OneToOne } from '../../../relationships/OneToOne';
 import { memoryDatastore } from '../Datastore.test';
+import { Agent } from './Agent.test';
 
 @Entity(memoryDatastore)
 export class Author extends BaseEntity {
@@ -25,6 +27,9 @@ export class Author extends BaseEntity {
 
   @Column()
   public isPerson: boolean = true;
+
+  @OneToOne(Agent)
+  public agent!: Agent;
 
   public temporarilyFlaggedInMemory: boolean = false;
 }

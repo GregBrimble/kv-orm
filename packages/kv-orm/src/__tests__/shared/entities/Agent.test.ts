@@ -3,13 +3,13 @@ import { Entity } from '../../../Entity';
 import { memoryDatastore } from '../Datastore.test';
 
 @Entity(memoryDatastore)
-export class Book extends BaseEntity {
+export class Agent extends BaseEntity {
   @Column()
-  public title!: string;
+  public name!: string;
 }
 
-describe('Book', () => {
+describe('Agent', () => {
   it('can be initialized', () => {
-    expect(new Book()).toBeInstanceOf(Book);
+    expect(new Agent()).toBeInstanceOf(Agent);
   });
 });

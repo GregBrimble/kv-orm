@@ -1,12 +1,12 @@
-import { Datastore } from '..';
+import { BaseEntity, Datastore } from '..';
 
-export function Column() {
+export function OneToMany(type: typeof BaseEntity) {
   return (target: object, key: string) => {
     const constructor = target.constructor as any;
     constructor.properties = constructor.properties || [];
     (constructor.properties as object[]).push({
       key,
-      type: Column
+      type: OneToMany
     });
 
     // @ts-ignore
@@ -15,15 +15,18 @@ export function Column() {
         enumerable: true,
         async get(this: any): Promise<any> {
           const datastore = this.constructor.datastore as Datastore;
-          this[`_${key}`] = this[`_${key}`] || (await datastore.read(datastore.generateKey(this, key)));
-          return this[`_${key}`];
+          const relationUUID = await datastore.read(datastore.generateKey(this, key));
+          if (relationUUID) {
+            return await type.get(relationUUID);
+          } else {
+            return Promise.resolve(null);
+          }
         },
-        set(this: any, value: string): void {
+        set(this: any, value: BaseEntity) {
           const datastore = this.constructor.datastore as Datastore;
-          datastore.write(datastore.generateKey(this, key), value);
-          this[`_${key}`] = value;
+          datastore.write(datastore.generateKey(this, key), value.uuid);
         }
-      });
+      })
     }
-  };
+  }
 }
