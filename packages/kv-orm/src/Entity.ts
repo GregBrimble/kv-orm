@@ -14,9 +14,8 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
     constructor.prototype = original.prototype;
     Object.assign(constructor, original);
 
-    // TODO: Not a fan of this, and the hacky duplication done in BaseEntity
-    constructor.get = function(this: typeof BaseEntity, uuid: string): Promise<T> {
-      const instance = Object.create(this.prototype)
+    constructor.get = function(this: new(...args: any[]) => T, uuid: string): Promise<T> {
+      const instance = Object.create(this.prototype);
 
       instance.uuid = uuid;
 
@@ -29,7 +28,7 @@ export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastor
 
 export abstract class BaseEntity {
   // @ts-ignore
-  public static get<T extends BaseEntity>(this: typeof BaseEntity, uuid: string): Promise<T>;
+  public static get<T extends BaseEntity>(this: new(...args: any[]) => T, uuid: string): Promise<T>;
 
   @UUIDColumn()
   public uuid!: string;
