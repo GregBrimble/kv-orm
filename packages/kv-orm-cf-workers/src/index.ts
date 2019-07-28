@@ -1,1 +1,1 @@
-export * from './CloudflareWorkersKVDatastore';
+export * from "./CloudflareWorkersKVDatastore";

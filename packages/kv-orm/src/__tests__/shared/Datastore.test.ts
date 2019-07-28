@@ -1,9 +1,11 @@
-import { BaseEntity, Datastore, Entity } from '../..';
+import { BaseEntity, Datastore, Entity, SearchStrategy } from '../..';
 
 export class MemoryDatastore extends Datastore {
+  protected searchStrategies = [SearchStrategy.prefix];
+
   private data: { [key: string]: any } = {};
 
-  constructor(keySeparator: string = ':') {
+  public constructor(keySeparator: string = ':') {
     super(keySeparator);
   }
 
@@ -17,6 +19,44 @@ export class MemoryDatastore extends Datastore {
 
   public delete(key: string): void {
     delete this.data[key];
+  }
+
+  public search({
+    term,
+    strategy = SearchStrategy.prefix,
+    first = Infinity,
+    after = undefined
+  }: {
+    term: string;
+    strategy?: SearchStrategy;
+    first?: number;
+    after?: string;
+  }): Promise<{
+    keys: string[];
+    hasNextPage: boolean;
+    cursor: string;
+  }> {
+    if (strategy !== SearchStrategy.prefix) {
+      throw new Error('prefix is the only implemented search strategy.');
+    }
+
+    let keys = Object.keys(this.data).filter(key => key.startsWith(term));
+
+    if (after === undefined) {
+      after = '-1';
+    }
+
+    keys = keys.slice(+after + 1);
+
+    const hasNextPage = keys.length > first;
+
+    if (first !== Infinity) {
+      keys = keys.slice(0, first);
+    }
+
+    const cursor = +after + (hasNextPage ? first : keys.length);
+
+    return Promise.resolve({ keys, hasNextPage, cursor: cursor.toString() });
   }
 }
 

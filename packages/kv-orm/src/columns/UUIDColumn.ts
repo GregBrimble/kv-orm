@@ -1,20 +1,22 @@
 import { v4 } from 'uuid/interfaces';
+import { BaseEntityPrivate, BaseEntity } from '../Entity';
 import { uuid } from '../utils';
 
-export function UUIDColumn() {
-  return (target: object, key: string) => {
-    // @ts-ignore
-    if (delete this[key]) {
-      Object.defineProperty(target, key, {
-        enumerable: true,
-        get(this: any) {
-          this._uuid = this._uuid || uuid();
-          return this._uuid;
-        },
-        set(this: any, value: v4) {
-          this._uuid = value;
-        }
-      });
+export function UUIDColumn(this: BaseEntityPrivate & any) {
+  return (target: object, key: keyof BaseEntity) => {
+    if (!delete this[key]) {
+      throw new Error(`Could not setup the UUIDColumn, ${key}, on ${target}.`);
     }
+
+    Object.defineProperty(target, key, {
+      enumerable: true,
+      get(this: BaseEntityPrivate): v4 {
+        this.__meta.properties.uuid = this.__meta.properties.uuid || uuid();
+        return this.__meta.properties.uuid;
+      },
+      set(this: any, value: v4): void {
+        this.__meta.properties.uuid = value;
+      }
+    });
   };
 }

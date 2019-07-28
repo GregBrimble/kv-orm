@@ -1,9 +1,9 @@
-import { Column } from '../../..';
+import { BaseEntity, Column } from '../../..';
 import { Entity } from '../../../Entity';
 import { memoryDatastore } from '../Datastore.test';
 
 @Entity(memoryDatastore)
-export class Book {
+export class Book extends BaseEntity {
   @Column()
   public title!: string;
 }
