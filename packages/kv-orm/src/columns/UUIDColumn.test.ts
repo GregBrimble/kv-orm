@@ -2,7 +2,11 @@ import { Author } from '../__tests__/shared/entities/Author.test';
 import { uuid } from '../utils';
 
 describe('UUIDColumn', () => {
-  const author = new Author();
+  let author: Author;
+
+  beforeEach(() => {
+    author = new Author();
+  });
 
   it('generates a new non-colliding UUID by default', () => {
     expect(author.uuid.length).toEqual(36);

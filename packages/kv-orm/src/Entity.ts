@@ -1,99 +1,59 @@
 import { UUIDColumn } from './columns/UUIDColumn';
 import { Datastore } from './datastore/Datastore';
 
-export function Entity<T extends new (...args: any[]) => {}>(datastore: Datastore): (target: T) => any {
-  return (target: T): BaseEntity => {
-    const original = target;
+interface EntityMeta {
+  datastore: Datastore;
+  key: string;
+  properties: { [key: string]: any };
+}
 
-    const constructor: any = function(this: any, ...args: any[]): void {
-      this.constructor.datastore = datastore;
-      this.constructor.key = this.constructor.name;
+export interface BaseEntityPrivate {
+  __meta: EntityMeta;
+  uuid: string;
+}
+
+export function Entity(datastore: Datastore) {
+  // Pretty hacky constructor mixin. I need to learn more about prototyping
+  // and how the ES6 syntax sugar works behind-the-scenes before I can improve this any further.
+  // The API works well enough though, and that's the most important bit to continue building new things.
+  return <T extends new (...args: any[]) => {}>(constructor: T): T => {
+    const original = constructor;
+
+    const c = function(this: any, ...args: any[]) {
+      c.__meta.createInstanceMeta(this);
       original.apply(this, args);
     };
 
-    constructor.prototype = original.prototype;
-    Object.assign(constructor, original);
-
-    constructor.get = function(this: new(...args: any[]) => T, uuid: string): Promise<T> {
-      const instance = Object.create(this.prototype);
-
-      instance.uuid = uuid;
-
-      return Promise.resolve(instance);
+    c.__meta = {
+      createInstanceMeta: function createMeta(i: new (...args: any[]) => {}) {
+        Object.defineProperty(i, '__meta', {
+          writable: true,
+          value: {
+            datastore,
+            key: i.constructor.name,
+            properties: {}
+          }
+        });
+      }
     };
 
-    return constructor;
+    Object.assign(c, original);
+    c.prototype = Object.create(original.prototype);
+    c.get = (original as any).get;
+
+    // @ts-ignore
+    return c;
   };
 }
 
 export abstract class BaseEntity {
-  // @ts-ignore
-  public static get<T extends BaseEntity>(this: new(...args: any[]) => T, uuid: string): Promise<T>;
+  public static get<T extends BaseEntity>(this: new (...args: any[]) => T, uuid: string): Promise<T> {
+    const i = Object.create(this.prototype);
+    (this as any).__meta.createInstanceMeta(i);
+    i.uuid = uuid;
+    return Promise.resolve(i);
+  }
 
   @UUIDColumn()
   public uuid!: string;
 }
-
-// export abstract class Entity {
-//   // private static getDefaultKeyName(instance: Entity) {
-//   //     return instance.constructor.name;
-//   // }
-//
-//   // private ID: string;
-//   //
-//   // public get id(): string {
-//   //   this.ID = this.ID || uuidv4();
-//   //   return this.ID;
-//   // }
-//   //
-//   //
-//   // protected abstract _key: string;
-//   protected _ds!: Datastore;
-//
-//   // constructor(props: Map<string, Property>) {
-//   //   // this.key = key || Entity.getDefaultKeyName(this);
-//   //   // TODO: Find a more organic way of getting props
-//   //   // for (const [key, prop] of props) {
-//   //   //   Object.defineProperty(this, key, {
-//   //   //     get: async function() {
-//   //   //       if (typeof this[prop.key] === 'undefined') {
-//   //   //         this[prop.key] = hydrateRelationship(prop, await this._ds.read(prop._key));
-//   //   //       }
-//   //   //       return prop.get(this[prop.key]);
-//   //   //     },
-//   //   //     set: async function(value: any) {
-//   //   //       value = prop._attrs.set(value);
-//   //   //       // TODO: Check allowed types
-//   //   //       this[prop._key] = value;
-//   //   //       value = desiccateRelationship(prop, value);
-//   //   //       await this._ds.write(prop._key, value);
-//   //   //     }
-//   //   //   });
-//   //   // }
-//   // }
-// }
-
-// -----------------------------------
-
-// function propIsRelationship(prop) {
-//   return prop.constructor.prototype instanceof Relationship || prop.constructor === Relationship;
-// }
-//
-// function hydrateRelationship(prop, value) {
-//   if (propIsRelationship(prop)) {
-//     return prop._type.get(value);
-//   }
-//   return value;
-// }
-//
-// function desiccateRelationship(prop, value) {
-//   if (propIsRelationship(prop)) {
-//     return value.id;
-//   }
-//   return value;
-// }
-//
-// class Model {
-//   // TODO: Test nested models/properties
-//   // TODO: Test many-to-one, one-to-one, one-to-many, zero-to-.... etc. Relationships
-// }

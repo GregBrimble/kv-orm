@@ -5,6 +5,7 @@ describe('the library', () => {
     const ernestHemingway = new Author();
     ernestHemingway.firstName = 'Ernest';
     ernestHemingway.lastName = 'Hemingway';
+    ernestHemingway.isPerson = false;
 
     const williamShakespeare = new Author();
     williamShakespeare.uuid = '10ba038e-48da-487b-96e8-8d3b99b6d18a';
@@ -19,7 +20,7 @@ describe('the library', () => {
     fictionalAuthor.temporarilyFlaggedInMemory = true;
 
     it('can find those authors by auto-generated UUID', async () => {
-      const foundAuthor = (await Author.get(ernestHemingway.uuid)) as Author;
+      const foundAuthor = await Author.get(ernestHemingway.uuid);
 
       expect.assertions(3);
       expect(foundAuthor.uuid).toEqual(ernestHemingway.uuid);
@@ -28,7 +29,7 @@ describe('the library', () => {
     });
 
     it('can find those authors by manually specified UUID', async () => {
-      const foundAuthor = (await Author.get(williamShakespeare.uuid)) as Author;
+      const foundAuthor = await Author.get(williamShakespeare.uuid);
 
       expect.assertions(3);
       expect(foundAuthor.uuid).toEqual('10ba038e-48da-487b-96e8-8d3b99b6d18a');
@@ -37,7 +38,7 @@ describe('the library', () => {
     });
 
     it('persists Column values as expected in the datastore', async () => {
-      const foundAuthor = (await Author.get(fictionalAuthor.uuid)) as Author;
+      const foundAuthor = await Author.get(fictionalAuthor.uuid);
 
       expect.assertions(5);
       expect(foundAuthor.uuid).toEqual(fictionalAuthor.uuid);

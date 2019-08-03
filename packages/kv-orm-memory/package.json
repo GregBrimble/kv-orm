@@ -9,8 +9,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist/ node_modules/",
-    "lint": "tslint -p tsconfig.json",
+    "clean": "rm -rf dist/",
+    "clean:node": "rm -rf package-lock.json node_modules/",
+    "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --write \"src/**/*.ts\", \"src/**/*.ts\"",
     "test": "jest --config=jest.config.js"
   },
@@ -40,20 +41,22 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-typescript": "^7.1.0",
     "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "istanbul-lib-coverage": "^2.0.5",
     "istanbul-lib-report": "^2.0.8",
     "jest": "^24.8.0",
     "kv-orm": "^0.2.3",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.0",
-    "tslint": "^5.18.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-eslint-rules-recommended": "^1.2.0",
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
     "kv-orm": "^0.2.2"
   },
-  "gitHead": "7e1fa77ce85e81542db4ba2c968cea0af36286b6"
+  "gitHead": "7e1fa77ce85e81542db4ba2c968cea0af36286b6",
+  "dependencies": {}
 }

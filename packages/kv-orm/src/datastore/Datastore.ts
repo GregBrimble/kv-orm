@@ -1,7 +1,17 @@
-import { BaseEntity } from '../Entity';
+import { BaseEntity, BaseEntityPrivate } from '../Entity';
+
+export enum SearchStrategy {
+  prefix
+}
 
 export abstract class Datastore {
-  public constructor(private keySeparator: string = ':') {}
+  protected abstract searchStrategies: SearchStrategy[];
+
+  private readonly keySeparator: string = ':';
+
+  protected constructor(keySeparator: string) {
+    this.keySeparator = keySeparator;
+  }
 
   public abstract read(key: string): Promise<any>;
 
@@ -9,8 +19,23 @@ export abstract class Datastore {
 
   public abstract delete(key: string): void;
 
-  public generateKey(instance: BaseEntity, key: string) {
-    return [(instance.constructor as any).key, instance.uuid, key].join(this.keySeparator);
+  public abstract search({
+    term,
+    strategy,
+    first,
+    after
+  }: {
+    term: string;
+    strategy?: SearchStrategy;
+    first?: number;
+    after?: string;
+  }): Promise<{
+    keys: string[];
+    hasNextPage: boolean;
+    cursor: string;
+  }>;
+
+  public generateKey(instance: BaseEntity, key: string): string {
+    return [(instance as BaseEntityPrivate).__meta.key, instance.uuid, key].join(this.keySeparator);
   }
 }
-

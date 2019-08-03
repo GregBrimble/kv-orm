@@ -46,14 +46,14 @@
   
 * On-demand, lazy-loading: [kv-orm] won't load properties of a model until they're needed, and will do so seamlessly at the time of lookup.
   ```typescript
-  let author = Author.get('bbed05da-594e-41d4-9b97-423343543e16') as Author; // 1ms - no properties of the author have been loaded
+  let author = Author.get('bbed05da-594e-41d4-9b97-423343543e16'); // 1ms - no properties of the author have been loaded
 
   console.log(await author.firstName); // 60ms - author.firstName is fetched 
   ```
 
 * No unnecessary reads: if a property is already in memory, [kv-orm] won't look it up again unless it needs to.
   ```typescript
-  let author = Author.get('0486b183-270d-408a-a274-49b45c418c48') as Author;
+  let author = Author.get('0486b183-270d-408a-a274-49b45c418c48');
   
   console.log(await author.lastName); // 60ms - author.lastName is fetched
   console.log(await author.lastName); // 1ms - author.lastName is retrieved from memory (no lookup performed)
@@ -61,7 +61,7 @@
   
 * Writes and deletes are completed in the background — allowing your application to get on with what it needs to.
   ```typescript
-  let author = Author.get('4bc148c5-af48-46ff-a620-3246efc69d91') as Author;
+  let author = Author.get('4bc148c5-af48-46ff-a620-3246efc69d91');
   
   author.firstName = 'Ernest';
   // Do more, immediately!

@@ -3,6 +3,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/kv-orm-cf-workers/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/kv-orm-memory/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/kv-orm/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

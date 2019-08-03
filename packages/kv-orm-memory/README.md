@@ -15,7 +15,7 @@ Please note, however, this datastore was not designed with security in mind. It 
 
 ## Usage
 ```typescript
-import { BaseEntity, Column, Datastore, Entity } from 'kv-orm';
+import { BaseEntity, Column, Entity } from 'kv-orm';
 import { MemoryDatastore } from 'kv-orm-memory';
 
 const memoryDatastore = new MemoryDatastore();
