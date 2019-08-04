@@ -11,8 +11,8 @@
     "build": "tsc",
     "clean": "rm -rf dist/",
     "clean:node": "rm -rf package-lock.json node_modules/",
-    "lint": "eslint 'src/**/*.ts'",
-    "format": "prettier --write \"src/**/*.ts\", \"src/**/*.ts\"",
+    "lint": "eslint 'src/**/*.ts' && prettier -c '*.md'",
+    "format": "prettier --write \"src/**/*.ts\" '*.md'",
     "test": "jest --config=jest.config.js"
   },
   "repository": {
