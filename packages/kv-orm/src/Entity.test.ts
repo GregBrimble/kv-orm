@@ -19,7 +19,7 @@ describe('Entity', () => {
     expect(Author.generatePenName()).toBeTruthy();
   });
   it('injects the datastore to the constructor', () => {
-    expect(((author as unknown) as BaseEntityPrivate).__meta.datastore).toBeInstanceOf(Datastore);
+    expect(((author as unknown) as BaseEntityPrivate).__meta.datastore).toBeTruthy();
   });
   describe('with default properties', () => {
     it('saves them at initialization', async () => {
