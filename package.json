@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "commit": "git-cz",
+    "clean:node": "rm -rf package-lock.json node_modules/",
     "test": "jest --projects packages/* --coverage --coverageDirectory=../../../coverage",
     "lint": "prettier -c '*.md'",
     "format": "prettier --write '*.md'",
