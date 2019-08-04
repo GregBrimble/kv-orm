@@ -103,7 +103,7 @@ If there is any other datastore that you'd like to see supported, please [create
 1. Setup:
    1. `lerna bootstrap`
    1. `lerna run build`
-   
+
 ### Linting
 
 `npm run lint && lerna run lint`
