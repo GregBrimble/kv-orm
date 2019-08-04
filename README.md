@@ -96,6 +96,34 @@ If there is any other datastore that you'd like to see supported, please [create
 
 - [Tooling & Infrastructure](https://github.com/GregBrimble/kv-orm/projects/1)
 
+## Development
+
+1. Clone this repository: `git clone git@github.com:GregBrimble/kv-orm.git`
+1. Install the core packages: `npm install`
+1. Setup:
+   1. `lerna bootstrap`
+   1. `lerna run build`
+   
+### Linting
+
+`npm run lint && lerna run lint`
+
+And to automatically fix most problems: `npm run format & lerna run format`
+
+### Tests
+
+`lerna run test`
+
+### Reset
+
+To start from scratch, and get back to a working state with syslinks etc.:
+
+1. `lerna run clean`
+1. `npm run clean:node && lerna run clean:node`
+1. `npm install`
+1. `lerna bootstrap`
+1. `lerna run build`
+
 [kv-orm]: https://github.com/GregBrimble/kv-orm
 [kv-orm-core]: packages/kv-orm/README.md
 [kv-orm-memory]: packages/kv-orm-memory/README.md
