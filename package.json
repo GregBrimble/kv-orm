@@ -4,6 +4,8 @@
   "scripts": {
     "commit": "git-cz",
     "test": "jest --projects packages/* --coverage --coverageDirectory=../../../coverage",
+    "lint": "prettier -c '*.md'",
+    "format": "prettier --write '*.md'",
     "posttest": "codecov"
   },
   "devDependencies": {
@@ -12,7 +14,8 @@
     "codecov": "^3.1.0",
     "cz-conventional-changelog": "^3.0.2",
     "jest": "^24.1.0",
-    "lerna": "^3.13.3"
+    "lerna": "^3.13.3",
+    "prettier": "^1.18.2"
   },
   "config": {
     "commitizen": {
