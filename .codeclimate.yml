@@ -1,6 +1,15 @@
-engines:
+version: "2"
+plugins:
+  git-legal:
+    enabled: true
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
   markdownlint:
     enabled: true
     checks:
       MD013:
         enabled: false
+  nodesecurity:
+    enabled: true
