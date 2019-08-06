@@ -1,6 +1,10 @@
 import { Column } from '../../..';
 import { BaseEntity, Entity } from '../../../Entity';
+import { OneToMany } from '../../../relationships/OneToMany';
+import { OneToOne } from '../../../relationships/OneToOne';
 import { memoryDatastore } from '../Datastore.test';
+import { Agent } from './Agent.test';
+import { Book } from './Book.test';
 
 @Entity(memoryDatastore)
 export class Author extends BaseEntity {
@@ -25,6 +29,12 @@ export class Author extends BaseEntity {
 
   @Column()
   public isPerson: boolean = true;
+
+  @OneToMany(Book)
+  public books: Book[] = [];
+
+  @OneToOne(Agent)
+  public agent: Agent | null = null;
 
   public temporarilyFlaggedInMemory: boolean = false;
 }

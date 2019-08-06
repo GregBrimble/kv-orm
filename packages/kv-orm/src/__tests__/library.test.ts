@@ -1,7 +1,8 @@
 import { Author } from './shared/entities/Author.test';
+import { Book } from './shared/entities/Book.test';
 
 describe('the library', () => {
-  describe('with authors', () => {
+  describe('with authors and books', () => {
     const ernestHemingway = new Author();
     ernestHemingway.firstName = 'Ernest';
     ernestHemingway.lastName = 'Hemingway';
@@ -18,6 +19,13 @@ describe('the library', () => {
     fictionalAuthor.lastName = fictionalNames[1];
     fictionalAuthor.isPerson = false;
     fictionalAuthor.temporarilyFlaggedInMemory = true;
+
+    const hermanMelville = new Author();
+    hermanMelville.firstName = 'Herman';
+    hermanMelville.lastName = 'Melville';
+
+    const mobyDick = new Book();
+    mobyDick.title = 'Moby Dick';
 
     it('can find those authors by auto-generated UUID', async () => {
       const foundAuthor = await Author.get(ernestHemingway.uuid);
@@ -46,6 +54,15 @@ describe('the library', () => {
       expect(await foundAuthor.lastName).toBeTruthy();
       expect(await foundAuthor.isPerson).toBeFalsy();
       expect(foundAuthor.temporarilyFlaggedInMemory).toBeFalsy();
+    });
+    describe('relations', () => {
+      it('can be made', async () => {
+        const hermanMelvillesBooks = [mobyDick];
+        hermanMelville.books = hermanMelvillesBooks;
+
+        expect.assertions(1);
+        expect(await hermanMelville.books).toBe(hermanMelvillesBooks);
+      });
     });
   });
 });

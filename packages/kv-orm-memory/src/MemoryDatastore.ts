@@ -1,6 +1,8 @@
 import { Datastore, SearchStrategy } from 'kv-orm';
 
 export class MemoryDatastore extends Datastore {
+  private SEARCH_FIRST_LIMIT = 1000;
+
   protected searchStrategies = [SearchStrategy.prefix];
 
   private data: { [key: string]: any } = {};
@@ -40,6 +42,10 @@ export class MemoryDatastore extends Datastore {
       throw new Error('prefix is the only implemented search strategy.');
     }
 
+    if (first > this.SEARCH_FIRST_LIMIT) {
+      first = this.SEARCH_FIRST_LIMIT;
+    }
+
     let keys = Object.keys(this.data).filter(key => key.startsWith(term));
 
     if (after === undefined) {
@@ -50,9 +56,7 @@ export class MemoryDatastore extends Datastore {
 
     const hasNextPage = keys.length > first;
 
-    if (first !== Infinity) {
-      keys = keys.slice(0, first);
-    }
+    keys = keys.slice(0, first);
 
     const cursor = +after + (hasNextPage ? first : keys.length);
 
