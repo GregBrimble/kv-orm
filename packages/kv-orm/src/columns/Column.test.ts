@@ -36,5 +36,13 @@ describe('Column', () => {
       expect(properties.firstName).toBeUndefined();
       expect(await author.firstName).toEqual('John');
     });
+    it('magically updates other instances', async () => {
+      const sameAuthor = await Author.get(author.uuid);
+
+      author.firstName = 'Jane';
+
+      expect.assertions(1);
+      expect(await sameAuthor.firstName).toEqual('Jane');
+    });
   });
 });

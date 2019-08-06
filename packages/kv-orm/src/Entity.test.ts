@@ -1,6 +1,5 @@
 import { memoryDatastore } from './__tests__/shared/Datastore.test';
 import { Author } from './__tests__/shared/entities/Author.test';
-import { Datastore } from './datastore/Datastore';
 import { BaseEntity, BaseEntityPrivate, Entity } from './Entity';
 import { uuid } from './utils';
 
@@ -20,6 +19,9 @@ describe('Entity', () => {
   });
   it('injects the datastore to the constructor', () => {
     expect(((author as unknown) as BaseEntityPrivate).__meta.datastore).toBeTruthy();
+  });
+  it('injects itself to the meta instances', () => {
+    expect((author.constructor as any).__meta.instances).toContain(author);
   });
   describe('with default properties', () => {
     it('saves them at initialization', async () => {
@@ -116,9 +118,10 @@ describe('BaseEntity', () => {
       const someUUID = uuid();
       const foundAuthor = await Author.get(someUUID);
 
-      expect.assertions(2);
+      expect.assertions(3);
       expect(foundAuthor).toBeInstanceOf(Author);
       expect(foundAuthor.uuid).toEqual(someUUID);
+      expect((foundAuthor.constructor as any).__meta.instances).toContain(foundAuthor);
     });
   });
 });

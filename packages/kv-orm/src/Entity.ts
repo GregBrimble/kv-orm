@@ -9,6 +9,7 @@ interface EntityMeta {
 
 export interface BaseEntityPrivate {
   __meta: EntityMeta;
+  __dirty: boolean;
   uuid: string;
 }
 
@@ -22,9 +23,11 @@ export function Entity(datastore: Datastore) {
     const c = function(this: any, ...args: any[]) {
       c.__meta.createInstanceMeta(this);
       original.apply(this, args);
+      this.constructor.__meta.instances.push(this);
     };
 
     c.__meta = {
+      key: constructor.name,
       createInstanceMeta: function createMeta(i: new (...args: any[]) => {}) {
         Object.defineProperty(i, '__meta', {
           writable: true,
@@ -39,6 +42,7 @@ export function Entity(datastore: Datastore) {
 
     Object.assign(c, original);
     c.prototype = Object.create(original.prototype);
+    (constructor as any).__meta = { instances: [] };
     c.get = (original as any).get;
 
     // @ts-ignore
@@ -51,6 +55,7 @@ export abstract class BaseEntity {
     const i = Object.create(this.prototype);
     (this as any).__meta.createInstanceMeta(i);
     i.uuid = uuid;
+    i.constructor.__meta.instances.push(i);
     return Promise.resolve(i);
   }
 

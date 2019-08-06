@@ -17,9 +17,16 @@ export function Column<T extends BaseEntity>(this: BaseEntity & any) {
           return this.__meta.properties[key];
         }
       },
-      set(this: BaseEntityPrivate, value: string): void {
+      set(this: BaseEntityPrivate, value: any): void {
         const datastore = this.__meta.datastore;
         datastore.write(datastore.generateKey(this, key), value);
+
+        if ((this.constructor as any).__meta !== undefined) {
+          for (const i of (this.constructor as any).__meta.instances.filter((i: BaseEntity) => i.uuid === this.uuid)) {
+            i.__meta.properties[key] = value;
+          }
+        }
+
         this.__meta.properties[key] = value;
       }
     });

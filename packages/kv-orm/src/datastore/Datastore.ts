@@ -35,7 +35,29 @@ export abstract class Datastore {
     cursor: string;
   }>;
 
-  public generateKey(instance: BaseEntity, key: string): string {
-    return [(instance as BaseEntityPrivate).__meta.key, instance.uuid, key].join(this.keySeparator);
+  public generateKey(instance: BaseEntity, key?: string, relation?: BaseEntity): string {
+    const elements = [(instance as BaseEntityPrivate).__meta.key, instance.uuid];
+    if (key !== undefined) {
+      elements.push(key);
+    }
+    if (relation !== undefined) {
+      elements.push((relation as BaseEntityPrivate).__meta.key, relation.uuid);
+    }
+    return elements.join(this.keySeparator);
+  }
+
+  public generateSearchTerm(instance: BaseEntity, key: string, relation: typeof BaseEntity): string {
+    const elements = [(instance as BaseEntityPrivate).__meta.key, instance.uuid, key, (relation as any).__meta.key];
+    return elements.join(this.keySeparator);
+  }
+
+  public extractUUIDFromKey(keyPrefix: string, key: string) {
+    const prefix = `${keyPrefix}${this.keySeparator}`;
+
+    if (!key.startsWith(prefix)) {
+      throw new Error(`Could not extract UUID from key, ${key}`);
+    }
+
+    return key.split(prefix)[1].split(this.keySeparator)[0];
   }
 }
