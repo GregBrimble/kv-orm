@@ -1,6 +1,6 @@
 {
   "name": "kv-orm-memory",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "An in-memory datastore for kv-orm",
   "main": "dist/index",
   "types": "dist/index",
@@ -49,7 +49,7 @@
     "istanbul-lib-coverage": "^2.0.5",
     "istanbul-lib-report": "^2.0.8",
     "jest": "^24.8.0",
-    "kv-orm": "^0.2.3",
+    "kv-orm": "^0.3.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.0",
     "typescript": "^3.5.3"
