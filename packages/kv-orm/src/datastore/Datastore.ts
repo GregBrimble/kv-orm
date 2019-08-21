@@ -15,9 +15,9 @@ export abstract class Datastore {
 
   public abstract read(key: string): Promise<any>;
 
-  public abstract write(key: string, value: any): void;
+  public abstract write(key: string, value: any): Promise<void>;
 
-  public abstract delete(key: string): void;
+  public abstract delete(key: string): Promise<void>;
 
   public abstract search({
     term,
