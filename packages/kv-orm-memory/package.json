@@ -55,7 +55,7 @@
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
-    "kv-orm": "^0.2.2"
+    "kv-orm": "^0.3.2"
   },
   "gitHead": "7e1fa77ce85e81542db4ba2c968cea0af36286b6"
 }
