@@ -15,12 +15,14 @@ export class MemoryDatastore extends Datastore {
     return Promise.resolve(this.data[key] || null);
   }
 
-  public write(key: string, value: any): void {
+  public write(key: string, value: any): Promise<void> {
     this.data[key] = value;
+    return Promise.resolve();
   }
 
-  public delete(key: string): void {
+  public delete(key: string): Promise<void> {
     delete this.data[key];
+    return Promise.resolve();
   }
 
   public search({
@@ -38,8 +40,8 @@ export class MemoryDatastore extends Datastore {
     hasNextPage: boolean;
     cursor: string;
   }> {
-    if (strategy !== SearchStrategy.prefix) {
-      throw new Error('prefix is the only implemented search strategy.');
+    if (!this.searchStrategies.includes(strategy)) {
+      throw new Error("Unimplemented search strategy.");
     }
 
     if (first > this.SEARCH_FIRST_LIMIT) {

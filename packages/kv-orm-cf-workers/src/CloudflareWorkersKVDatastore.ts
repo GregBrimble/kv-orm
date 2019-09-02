@@ -3,9 +3,9 @@ import { Datastore, SearchStrategy } from "kv-orm";
 export interface CloudflareWorkersKVNamespace {
   get(key: string): Promise<any>;
 
-  put(key: string, value: any): void;
+  put(key: string, value: any): Promise<void>;
 
-  delete(key: string): void;
+  delete(key: string): Promise<void>;
 
   list(options: {
     prefix?: string;
@@ -35,12 +35,12 @@ export class CloudflareWorkersKVDatastore extends Datastore {
     return this.namespace.get(key);
   }
 
-  public write(key: string, value: any): void {
-    this.namespace.put(key, value);
+  public write(key: string, value: any): Promise<void> {
+    return this.namespace.put(key, value);
   }
 
-  public delete(key: string): void {
-    this.namespace.delete(key);
+  public delete(key: string): Promise<void> {
+    return this.namespace.delete(key);
   }
 
   public async search({
@@ -58,8 +58,8 @@ export class CloudflareWorkersKVDatastore extends Datastore {
     hasNextPage: boolean;
     cursor: string;
   }> {
-    if (strategy !== SearchStrategy.prefix) {
-      throw new Error("prefix is the only implemented search strategy.");
+    if (!this.searchStrategies.includes(strategy)) {
+      throw new Error("Unimplemented search strategy.");
     }
 
     let response = await this.namespace.list({
