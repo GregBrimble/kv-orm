@@ -10,7 +10,7 @@
     "posttest": "codecov"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.16",
+    "@types/jest": "^25.1.0",
     "@types/jest-diff": "^20.0.0",
     "codecov": "^3.1.0",
     "cz-conventional-changelog": "^3.0.2",
