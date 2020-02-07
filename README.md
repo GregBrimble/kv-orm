@@ -85,6 +85,7 @@ If there is any other datastore that you'd like to see supported, please [create
 [![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/bug.svg?colorB=%23d73a4a&logo=github)](https://github.com/GregBrimble/kv-orm/labels/bug)
 [![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/enhancement.svg?colorB=%23a2eeef&logo=github)](https://github.com/GregBrimble/kv-orm/labels/enhancement)
 [![Open bugs](https://img.shields.io/github/issues-raw/GregBrimble/kv-orm/far%20future.svg?colorB=%23c4c6ff&logo=github)](https://github.com/GregBrimble/kv-orm/labels/far%20future)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGregBrimble%2Fkv-orm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGregBrimble%2Fkv-orm?ref=badge_shield)
 
 ### Packages
 
@@ -128,3 +129,7 @@ To start from scratch, and get back to a working state with syslinks etc.:
 [kv-orm-core]: packages/kv-orm/README.md
 [kv-orm-memory]: packages/kv-orm-memory/README.md
 [kv-orm-cf-workers]: packages/kv-orm-cf-workers/README.md
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGregBrimble%2Fkv-orm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGregBrimble%2Fkv-orm?ref=badge_large)
