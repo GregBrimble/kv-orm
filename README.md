@@ -7,7 +7,7 @@
 _Tooling & Infrastructure_
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-[![Greenkeeper](https://badges.greenkeeper.io/GregBrimble/kv-orm.svg)](https://greenkeeper.io/)
+
 [![Commitizen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 _Source Code_
