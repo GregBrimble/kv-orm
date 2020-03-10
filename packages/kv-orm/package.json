@@ -55,7 +55,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "uuid": "^3.3.2"
+    "uuid": "^3.4.0"
   },
   "gitHead": "7e1fa77ce85e81542db4ba2c968cea0af36286b6"
 }
